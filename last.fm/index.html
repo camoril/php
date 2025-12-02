@@ -3,86 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last.fm Live Cover</title>
+    <title>Last.fm Recent Tracks</title>
     <style>
         body { 
             margin: 0; 
             padding: 0; 
             background-color: #000; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
             height: 100vh; 
             overflow: hidden;
+            font-family: sans-serif;
         }
-        img { 
-            max-width: 100%; 
-            max-height: 100vh; 
-            object-fit: contain; 
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            opacity: 0; /* Invisible al inicio para efecto fade */
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        .track-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            background: #111;
+        }
+        .track-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
-        img.loaded {
+        .track-img.loaded {
             opacity: 1;
+        }
+        .track-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px;
+            font-size: 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .track-container:hover .track-info {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <img id="coverArt" src="" alt="Cargando...">
+    <div id="grid"></div>
 
     <script>
         const USER = 'camoril';
         const API_KEY = '7a67bfe297bfe43956a01cab95dfc965';
-        const IMG_ELEMENT = document.getElementById('coverArt');
-        let currentImageUrl = '';
+        const GRID_ELEMENT = document.getElementById('grid');
+        
+        // Cache para imágenes de artistas para no saturar la API
+        const artistImageCache = {};
 
-        async function updateCover() {
+        async function getArtistImage(artistName) {
+            if (artistImageCache[artistName]) return artistImageCache[artistName];
+
             try {
-                // 1. Obtener canciones recientes (formato JSON)
-                const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USER}&api_key=${API_KEY}&format=json&limit=1`);
+                const encodedArtist = encodeURIComponent(artistName);
+                const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodedArtist}&api_key=${API_KEY}&format=json`);
+                const data = await response.json();
+                
+                if (data.artist && data.artist.image) {
+                    // Intentar obtener imagen mega (4) o extralarge (3)
+                    const img = data.artist.image[4]['#text'] || data.artist.image[3]['#text'];
+                    if (img) {
+                        artistImageCache[artistName] = img;
+                        return img;
+                    }
+                }
+            } catch (e) {
+                console.error('Error fetching artist image:', e);
+            }
+            return null;
+        }
+
+        async function updateTracks() {
+            try {
+                const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USER}&api_key=${API_KEY}&format=json&limit=10`);
                 const data = await response.json();
                 
                 if (!data.recenttracks || !data.recenttracks.track) return;
 
-                const track = data.recenttracks.track[0];
-                // Intentar obtener imagen extralarge (índice 3)
-                let newImageUrl = track.image[3]['#text'];
+                const tracks = data.recenttracks.track;
+                
+                // Limpiar grid actual (o podrías hacer diffing para ser más eficiente, pero esto es simple)
+                GRID_ELEMENT.innerHTML = '';
 
-                // 2. Si no hay portada, buscar imagen del artista
-                if (!newImageUrl) {
-                    const artist = encodeURIComponent(track.artist['#text']);
-                    const artistResp = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=${API_KEY}&format=json`);
-                    const artistData = await artistResp.json();
-                    
-                    if (artistData.artist && artistData.artist.image) {
-                        // Intentar obtener imagen mega (índice 4) o extralarge (3)
-                        newImageUrl = artistData.artist.image[4]['#text'] || artistData.artist.image[3]['#text'];
+                // Procesar tracks en paralelo para las imágenes
+                const trackPromises = tracks.map(async (track) => {
+                    let imageUrl = track.image[3]['#text']; // extralarge
+
+                    if (!imageUrl) {
+                        imageUrl = await getArtistImage(track.artist['#text']);
                     }
-                }
-
-                // Solo actualizar si la imagen cambió y no está vacía
-                if (newImageUrl && newImageUrl !== currentImageUrl) {
-                    currentImageUrl = newImageUrl;
                     
-                    // Precargar imagen para evitar parpadeos
+                    // Si aún no hay imagen, usar un placeholder o dejar vacío
+                    if (!imageUrl) imageUrl = 'https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png'; // Placeholder genérico de last.fm
+
+                    return {
+                        image: imageUrl,
+                        title: track.name,
+                        artist: track.artist['#text'],
+                        album: track.album['#text']
+                    };
+                });
+
+                const processedTracks = await Promise.all(trackPromises);
+
+                processedTracks.forEach(track => {
+                    const container = document.createElement('div');
+                    container.className = 'track-container';
+                    
+                    const img = document.createElement('img');
+                    img.className = 'track-img';
+                    img.alt = `${track.artist} - ${track.title}`;
+                    
+                    // Cargar imagen
                     const tempImg = new Image();
                     tempImg.onload = () => {
-                        IMG_ELEMENT.src = newImageUrl;
-                        IMG_ELEMENT.classList.add('loaded');
+                        img.src = track.image;
+                        img.classList.add('loaded');
                     };
-                    tempImg.src = newImageUrl;
-                }
+                    tempImg.src = track.image;
+
+                    // Info overlay (opcional, pero útil)
+                    const info = document.createElement('div');
+                    info.className = 'track-info';
+                    info.textContent = `${track.artist} - ${track.title}`;
+
+                    container.appendChild(img);
+                    container.appendChild(info);
+                    GRID_ELEMENT.appendChild(container);
+                });
 
             } catch (error) {
                 console.error('Error al obtener datos de Last.fm:', error);
             }
         }
 
-        // Actualizar inmediatamente y luego cada 10 segundos
-        updateCover();
-        setInterval(updateCover, 10000);
+        // Actualizar inmediatamente y luego cada 15 segundos
+        updateTracks();
+        setInterval(updateTracks, 15000);
     </script>
 </body>
 </html>
