@@ -5,7 +5,12 @@ Todos los cambios notables en el proyecto "Genetic Algorithm" serán documentado
 ## [2025-12-02] - Optimización y UI Interactiva
 
 ### Añadido
-- **Interfaz de Usuario**: Formulario HTML/CSS en `index.php` que permite al usuario configurar:
+- **Interfaz de Usuario Mejorada**:
+  - Diseño moderno con Flexbox (2 columnas: Configuración + Guía).
+  - **Panel de Ayuda**: Barra lateral con explicaciones detalladas de cada parámetro.
+  - **Botón Reset**: Funcionalidad para limpiar resultados y recargar la página.
+  - Estilos visuales mejorados para formularios y resultados.
+- **Interfaz de Usuario (Anterior)**: Formulario HTML/CSS en `index.php` que permite al usuario configurar:
   - Texto objetivo.
   - Tamaño de la población.
   - Tasa de mutación.
