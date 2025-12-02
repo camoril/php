@@ -2,244 +2,175 @@
 
 class Gac {
 
-    const TAM_POBLACION = 20;
-    const FREQ_MUTACION = 10;
-    const TAM_MUTACION = 100;
-    const SOBREVIVIENTES = 8;
-    const FREQ_EXITO = 1;
-    const LETTERS = "abcdefghijklmnopqrstuvwxyz";
-    const OFFSPRING = 2;
+    // Diccionario de caracteres permitidos
+    const LETTERS = "abcdefghijklmnopqrstuvwxyz ";
 
-    public function Gac($text) {
-        $this->text = $text;
-        $this->lenght = strlen($this->text);
-        $this->population = 0;
-        $this->max_rate = 0;
-        $this->avarage_suc_rate = 0;
-        $this->best = array();
-        $this->passed = FALSE;
-        $this->generations = 0;
-    }
+    private $target;
+    private $length;
+    private $population = [];
+    private $generation = 0;
 
-    private function check_success($data) {
-        $rate = 0;
+    // Variables de configuración (ya no son constantes)
+    private $tam_poblacion;
+    private $tasa_mutacion;
+    private $elitismo;
 
-        for ($i = 0; $i < $this->lenght; $i++) {
-            $original_letter = substr($this->text, $i, 1);
-            $text_letter = substr($data, $i, 1);
-            if ($original_letter == $text_letter) {
-                $rate++;
-            }
-        }
-
-        $rate = $rate / $this->lenght;
-
-        return $rate;
-    }
-
-    private function first_population($gene_code) {
-        $words = array();
-        for ($i = 0; $i < self::TAM_POBLACION; $i++) {
-            $this->population++;
-            $mutation = TRUE; // Primer puplación, MUTAR TODO!
-
-            $new_ind = $this->generate($gene_code, $mutation);
-            $words[$i]["word"] = $new_ind["word"];
-            $words[$i]["rate"] = $new_ind["rate"];
-            $words[$i]["gene_code"] = $new_ind["gene_code"];
-
-            echo $new_ind["word"] . " - " . $new_ind["rate"] . "<br>\n";
-        }
-        echo "fin primera generación <br>\n";
-        echo "----------------------------<br>\n";
-        array_unique($words);
-        usort($words, "cmp");
-        return $words;
-    }
-
-    private function kill($genes) {
-        if (count($genes) > self::SOBREVIVIENTES) {
-            $diff = count($genes) - self::SOBREVIVIENTES;
-
-            for ($i = 0; $i < $diff; $i++) {
-                array_pop($genes);
-            }
-
-            print "ASESINADOS $diff INDIVIDUOS<br>\n";
-        }
-
-        return $genes;
-    }
-
-    private function populate($genes) {
-        $this->generations++;
-        $new_genes = array();
-        echo "------------ COMIENZA LA GENERACION: " . $this->generations . " ------------<br>\n";
-        //cruzar todo
-        usort($this->best, "cmp");
-        for ($j = 0; $j < self::OFFSPRING; $j++) {
-            for ($i = 0; $i < count($genes); $i++) {
-                $this->population++;
-                $best = FALSE;
-
-                if ($genes[$i]["rate"] >= $this->max_rate) {
-                    $new_gene = $genes[$i]["gene_code"];
-                    $best = TRUE;
-                    echo "PAUSA<br>";
-                } else {
-                    if ($genes[$i]["gene_code"] !== $genes[$i + 1]["gene_code"] && $genes[$i + 1]["gene_code"]) {
-                        $new_gene = $this->cross($genes[$i]["gene_code"], $genes[$i + 1]["gene_code"]);
-                    } else if ($genes[$i]["gene_code"] !== $genes[$i + 2]["gene_code"] && $genes[$i + 2]["gene_code"]) {
-                        $new_gene = $this->cross($genes[$i]["gene_code"], $genes[$i + 2]["gene_code"]);
-                    } else {
-                        $new_gene = $genes[$i]["gene_code"];
-                        echo "<span style='color:blue'>NINGUNA CRUZA!</span><br>\n";
-                    }
-                }
-
-                if ($new_gene == $genes[$i]["gene_code"] && $i !== 0) {
-                    $new_gene = $this->mutate($new_gene);
-                    echo "<span style='color:red'>MUTACION INESPERADA!</span><br>\n";
-                }
-
-                $mutation = FALSE;
-
-                if ($this->population % self::TAM_MUTACION == 0) {
-                    //mutar el gen recien creado si el tamaño de la MUTACION! se alcanza
-                    echo "MUTACION!<br>\n";
-                    $mutation = TRUE;
-                }
-
-                $new_ind = $this->generate($new_gene, $mutation);
-                $new_genes[$i]["word"] = $new_ind["word"];
-                $new_genes[$i]["rate"] = $new_ind["rate"];
-                $new_genes[$i]["gene_code"] = $new_ind["gene_code"];
-
-                if ($new_ind["rate"] >= $this->max_rate && !in_array($new_ind, $this->best)) {
-                    $this->max_rate = $new_ind["rate"];
-                    $this->best[] = $new_ind;
-                    usort($this->best, "cmp");
-                }
-
-                echo $new_ind["word"] . " - " . $new_ind["rate"] . "<br>\n";
-            }
-        }
-
-
-        array_unique($new_genes);
-        usort($new_genes, "cmp");
-        return $new_genes;
-    }
-
-    private function cross($gene1, $gene2) {
-        $new_gene = array();
-        for ($i = 0; $i < $this->lenght; $i++) {
-            $rand = rand(0, 1);
-            if ($rand) {
-                $new_gene[$i] = $gene1[$i];
-            } else {
-                $new_gene[$i] = $gene2[$i];
-            }
-        }
-
-        if ($new_gene !== $gene1 && $new_gene !== $gene2) {
-            echo "<span style='color:green'>CRUZA EXITOSA! </span><br>";
-        }
-
-        return $new_gene;
-
-        // unset($cross_letters);
-        // 		$cross_letters = array();
-        // 		$cross_letter_num = rand(0,$this->lenght);
-        // 
-        // 		for($i=0;$i<$cross_letter_num;$i++)
-        // 		{
-        // 			$cross_letters[] = rand(0,$this->lenght-1);
-        // 		}
-        // 
-        // 		array_unique($cross_letters);
-        // 		foreach($cross_letters as $letter_num)
-        // 		{
-        // 			$gene1[$letter_num] = $gene2[$letter_num];
-        // 		}
-        // 		return $gene1;
-    }
-
-    public function execute() {
-        // the first gene code
-        $gene_code = $this->generate_gene_code();
-        $first_population = $this->first_population($gene_code);
-        $result = $this->evolution($first_population);
-
-        return $result;
-    }
-
-    private function evolution($genes_data) {
-        // return $genes_data;
-        if ($genes_data[0]["rate"] >= self::FREQ_EXITO) {
-            echo $genes_data[0]["word"] . " encontrado despues de " . $this->population . " intento(s)";
-            return $genes_data;
-        } else {
-            if (count($this->best) > self::SOBREVIVIENTES || $this->passed) {
-                usort($this->best, "cmp");
-                $this->best = $this->kill($this->best);
-                $genes = $this->best;
-                $this->passed = TRUE;
-            } else {
-                $genes = $genes_data;
-            }
-            return $this->evolution($this->populate($genes));
-        }
-    }
-
-    private function generate_gene_code() {
-        $code = array();
-        for ($i = 0; $i < $this->lenght; $i++) {
-            $code[] = rand(0, strlen(self::LETTERS));
-        }
-        return $code;
-    }
-
-    private function generate($gene_code, $mutation) {
-        // genera nuevos individuos de acuerdo al codigo genetico
-        if ($mutation) {
-            $gene_code = $this->mutate($gene_code);
-        }
+    /**
+     * Constructor con parámetros configurables
+     */
+    public function __construct($target, $tam_poblacion = 50, $tasa_mutacion = 0.05, $elitismo = 5) {
+        // Convertimos a minúsculas y filtramos caracteres no válidos para evitar bucles infinitos
+        $this->target = $this->sanitize_target($target);
+        $this->length = strlen($this->target);
         
-        //Definir nueva palabra para cruza
-        $new_word = "";
-
-        for ($i = 0; $i < $this->lenght; $i++) {
-            $letter = substr(self::LETTERS, $gene_code[$i], 1);
-            $new_word .= $letter;
-        }
-
-        $new_ind = array();
-
-        $new_ind["gene_code"] = $gene_code;
-        $new_ind["word"] = $new_word;
-        $new_ind["rate"] = $this->check_success($new_word);
-
-        return $new_ind;
+        $this->tam_poblacion = (int)$tam_poblacion;
+        $this->tasa_mutacion = (float)$tasa_mutacion;
+        $this->elitismo = (int)$elitismo;
     }
 
-    private function mutate($gene_code) {
-        // mutar datos originales y regresarlos
-        $mutate_letter_num = floor(self::FREQ_MUTACION * $this->lenght / 100);
-        $mutate_letters = array();
-
-        for ($i = 0; $i < $mutate_letter_num; $i++) {
-            $which = rand(0, $this->lenght - 1);
-            $mutate_letters[] = $which;
+    private function sanitize_target($text) {
+        $text = strtolower($text);
+        // Eliminar cualquier caracter que no esté en LETTERS
+        $clean = "";
+        for($i=0; $i<strlen($text); $i++) {
+            if (strpos(self::LETTERS, $text[$i]) !== false) {
+                $clean .= $text[$i];
+            }
         }
-
-        array_unique($mutate_letters);
-
-        foreach ($mutate_letters as $letter_num) {
-            $gene_code[$letter_num] = rand(0, strlen(self::LETTERS));
-        }
-        return $gene_code;
+        return $clean ?: "error";
     }
 
+    // Función de aptitud (Fitness): Qué tan cerca está del objetivo (0 a 1)
+    private function calculate_fitness($dna) {
+        $matches = 0;
+        for ($i = 0; $i < $this->length; $i++) {
+            if ($dna[$i] === $this->target[$i]) {
+                $matches++;
+            }
+        }
+        return $matches / $this->length;
+    }
+
+    // Generar individuo aleatorio
+    private function random_individual() {
+        $text = "";
+        $max_index = strlen(self::LETTERS) - 1;
+        for ($i = 0; $i < $this->length; $i++) {
+            $text .= self::LETTERS[mt_rand(0, $max_index)];
+        }
+        return $text;
+    }
+
+    // Crear población inicial
+    private function init_population() {
+        for ($i = 0; $i < $this->tam_poblacion; $i++) {
+            $dna = $this->random_individual();
+            $this->population[] = [
+                'dna' => $dna,
+                'fitness' => $this->calculate_fitness($dna)
+            ];
+        }
+    }
+
+    // Cruza (Crossover) de dos padres
+    private function crossover($parent1, $parent2) {
+        $child = "";
+        // Punto de corte aleatorio para mezclar genes
+        $midpoint = mt_rand(0, $this->length - 1);
+
+        for ($i = 0; $i < $this->length; $i++) {
+            if ($i > $midpoint) {
+                $child .= $parent1[$i];
+            } else {
+                $child .= $parent2[$i];
+            }
+        }
+        return $child;
+    }
+
+    // Mutación
+    private function mutate($dna) {
+        $max_index = strlen(self::LETTERS) - 1;
+        for ($i = 0; $i < $this->length; $i++) {
+            // Probabilidad de mutar cada letra individualmente
+            if ((mt_rand(0, 1000) / 1000) < $this->tasa_mutacion) {
+                $dna[$i] = self::LETTERS[mt_rand(0, $max_index)];
+            }
+        }
+        return $dna;
+    }
+
+    // Ejecución principal
+    public function execute() {
+        if ($this->target === "error") {
+            echo "Error: El texto objetivo contiene caracteres inválidos o está vacío.";
+            return;
+        }
+
+        $this->init_population();
+        $found = false;
+
+        // Bucle infinito hasta encontrar la solución (reemplaza la recursividad)
+        while (!$found) {
+            $this->generation++;
+
+            // 1. Ordenar por fitness (Mejores primero)
+            usort($this->population, function($a, $b) {
+                return $b['fitness'] <=> $a['fitness'];
+            });
+
+            // Mejor individuo actual
+            $best = $this->population[0];
+
+            // Imprimir progreso (Solo el mejor de la generación para no saturar)
+            // Usamos str_pad para que se vea bonito en consola o navegador
+            echo "Gen: " . str_pad($this->generation, 4) . " | Mejor: " . $best['dna'] . " | Fitness: " . number_format($best['fitness'] * 100, 2) . "%<br>";
+            flush(); // Forzar salida al navegador
+
+            // ¿Encontramos la solución?
+            if ($best['fitness'] >= 1) {
+                echo "<h1>¡ENCONTRADO!</h1>";
+                echo "Palabra: <strong>" . $best['dna'] . "</strong> en " . $this->generation . " generaciones.";
+                $found = true;
+                break;
+            }
+
+            // Seguridad para evitar bucles infinitos en servidor
+            if ($this->generation > 5000) {
+                echo "<h3>Límite de generaciones alcanzado (5000). Deteniendo.</h3>";
+                break;
+            }
+
+            // 2. Nueva Población
+            $new_population = [];
+
+            // A. Elitismo: Los mejores pasan directo
+            // Aseguramos no exceder la población total si elitismo es muy alto
+            $elitismo_real = min($this->elitismo, $this->tam_poblacion);
+            
+            for ($i = 0; $i < $elitismo_real; $i++) {
+                $new_population[] = $this->population[$i];
+            }
+
+            // B. Reproducción para llenar el resto
+            $remaining_slots = $this->tam_poblacion - $elitismo_real;
+            
+            for ($i = 0; $i < $remaining_slots; $i++) {
+                // Selección simple: Tomar dos padres aleatorios de la mitad superior (mejores genes)
+                $parent1 = $this->population[mt_rand(0, floor($this->tam_poblacion / 2))]['dna'];
+                $parent2 = $this->population[mt_rand(0, floor($this->tam_poblacion / 2))]['dna'];
+
+                $child_dna = $this->crossover($parent1, $parent2);
+                $child_dna = $this->mutate($child_dna);
+
+                $new_population[] = [
+                    'dna' => $child_dna,
+                    'fitness' => $this->calculate_fitness($child_dna)
+                ];
+            }
+
+            $this->population = $new_population;
+        }
+    }
 }
 ?>
