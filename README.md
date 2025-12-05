@@ -15,6 +15,10 @@ Una implementación didáctica y optimizada de un **Algoritmo Genético**.
 ### 💰 [Préstamos](/prestamos)
 Calculadora financiera de amortización de préstamos.
 - **Funcionalidad**: Permite calcular pagos periódicos y generar tablas de amortización completas.
+- **Sistemas de Amortización**:
+  - **Francés**: Cuota constante (Interés decreciente, capital creciente).
+  - **Alemán**: Amortización de capital constante (Cuota decreciente).
+  - **Americano**: Pago de intereses periódicos y devolución del capital al final.
 - **Opciones**: Soporta pagos semanales, quincenales, mensuales, trimestrales, semestrales y anuales.
 - **Tecnología**: Aplicación de archivo único (`index.php`) con diseño responsivo en Tailwind CSS.
 
