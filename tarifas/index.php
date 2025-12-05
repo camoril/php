@@ -1,91 +1,102 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Motor Tarificador v0.3</title>
-        <link rel="stylesheet" type="text/css" href="view.css" media="all">
-        <script type="text/javascript" src="view.js"></script>
-        <!--
-        v0.2 -  Script de Validacion Extension y Tipo (completo) 
-                ** falta verificar el tipo de digito en la casilla (solo numeros en ambos)
-        v0.3 - Generar opcion de Descarga en CSV el detalle de la extension seleccionada
-        -->
-        <script>
-            function validaForm()
-            {
-                var x = document.forms["captura"]["extension"].value;
-                if (x == null || x == "")
-                {
-                    alert("Debes conocer la extension a reportar. SOLO NUMEROS");
-                    return false;
-                }
-                var radios = document.getElementsByName("tipo");
-                var formValid = false;
-                var i = 0;
-                while (!formValid && i < radios.length) {
-                    if (radios[i].checked)
-                        formValid = true;
-                    i++;
-                }
-                if (!formValid)
-                    alert("Debes seleccionar Tipo de Reporte");
-                return formValid;
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Tarificador v1.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function validaForm(event) {
+            var ext = document.getElementById("extension").value;
+            if (!ext || isNaN(ext)) {
+                alert("Debes ingresar una extensión válida (SOLO NÚMEROS).");
+                event.preventDefault();
+                return false;
             }
-        </script>
-    </head>
-    <body id="main_body" >
-        <img id="top" src="top.png" alt="">
-        <div id="form_container">
-            <h1><a href="./">Reporte de Llamadas</a></h1>
-            <form name="captura" id="captura_datos" class="appnitro"  method="POST" action="llamadas.php" onsubmit="return validaForm()">
-                <div class="form_description">
-                    <center><h2>TARIFAS</h2></center>
-                    <center><p><h3>Motor para reportar llamadas - SMDR Avaya</h3></p></center>
-                </div>
-                <ul >
-                    <li id="li_1" >
-                        <label class="description" for="extension">Extension:</label>
-                        <div>
-                            <input id="extension" name="extension" class="element text small" type="text" maxlength="5" value=""/>
-                        </div>
-                    </li>
-                    <li id="li_2" >
-                        <label class="description" for="marcado">Marcado:</label>
-                        <div>
-                            <input id="marcado" name="marcado" class="element text small" type="text" maxlength="15" value=""/> 
-                        </div>
-                    </li>
-                    <li id="li_3" >
-                        <label class="description" for="mes">Mes:</label>
-                        <div>
-                            <select name="mes">
-                                <option value="septiembre_WTC">Septiembre 2013</option>
-                                <option value="octubre_WTC">Octubre 2013</option>
-                                <option value="noviembre_WTC">Noviembre 2013</option>
-                                <option value="diciembre_WTC">Diciembre 2013</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li id="li_4" >
-                        <label class="description" for="tipo">Tipo de Reporte:</label>
-                        <span>
-                            <input id="tipo_1" name="tipo" class="element radio" type="radio" value="1" />
-                            <label class="choice" for="tipo_1">Detalle Llamadas</label>
-                            <input id="tipo_3" name="tipo" class="element radio" type="radio" value="3" />
-                            <label class="choice" for="tipo_3">Detalle en CSV</label>
-                            <input id="tipo_2" name="tipo" class="element radio" type="radio" value="2" />
-                            <label class="choice" for="tipo_2">Total de LLamadas</label>
-                        </span>
-                    </li>
-                    <li class="buttons">		    
-                        <input id="saveForm" class="button_text" type="submit" name="submit" value="Generar" />
-                    </li>
-                </ul>
-            </form>
-            <div id="footer">
-                Generado por <a href="http://hypercube.com.mx">Ernesto PB.</a>
-            </div>
+            
+            var radios = document.getElementsByName("tipo");
+            var formValid = false;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) formValid = true;
+            }
+            
+            if (!formValid) {
+                alert("Debes seleccionar un Tipo de Reporte.");
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center py-10">
+
+    <div class="w-full max-w-md bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="bg-blue-600 p-6 text-center">
+            <h1 class="text-white text-2xl font-bold">Reporte de Llamadas</h1>
+            <p class="text-blue-200 text-sm mt-1">Motor Tarificador - SMDR Avaya</p>
         </div>
-        <img id="bottom" src="bottom.png" alt="">
-    </body>
+
+        <form name="captura" method="POST" action="llamadas.php" onsubmit="validaForm(event)" class="p-8 space-y-6">
+            
+            <!-- Extensión -->
+            <div>
+                <label for="extension" class="block text-sm font-medium text-gray-700 mb-1">Extensión</label>
+                <input type="text" id="extension" name="extension" maxlength="5" placeholder="Ej: 1234" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                <p class="text-xs text-gray-500 mt-1">Solo números (Máx 5 dígitos)</p>
+            </div>
+
+            <!-- Marcado -->
+            <div>
+                <label for="marcado" class="block text-sm font-medium text-gray-700 mb-1">Número Marcado (Opcional)</label>
+                <input type="text" id="marcado" name="marcado" maxlength="15" placeholder="Ej: 55..." 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+            </div>
+
+            <!-- Mes -->
+            <div>
+                <label for="mes" class="block text-sm font-medium text-gray-700 mb-1">Periodo</label>
+                <select name="mes" id="mes" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                    <option value="septiembre_WTC">Septiembre 2013</option>
+                    <option value="octubre_WTC">Octubre 2013</option>
+                    <option value="noviembre_WTC">Noviembre 2013</option>
+                    <option value="diciembre_WTC">Diciembre 2013</option>
+                </select>
+            </div>
+
+            <!-- Tipo de Reporte -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Reporte</label>
+                <div class="space-y-2">
+                    <div class="flex items-center">
+                        <input id="tipo_1" name="tipo" type="radio" value="1" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                        <label for="tipo_1" class="ml-3 block text-sm text-gray-700">Detalle de Llamadas</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="tipo_2" name="tipo" type="radio" value="2" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                        <label for="tipo_2" class="ml-3 block text-sm text-gray-700">Total de Tiempo</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="tipo_3" name="tipo" type="radio" value="3" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                        <label for="tipo_3" class="ml-3 block text-sm text-gray-700">Descargar CSV</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón -->
+            <div>
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+                    Generar Reporte
+                </button>
+            </div>
+
+        </form>
+
+        <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 text-center">
+            <p class="text-xs text-gray-500">Generado por <a href="#" class="text-blue-600 hover:underline">Ernesto PB</a></p>
+        </div>
+    </div>
+
+</body>
 </html>
