@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0] - 2025-12-04
 
 ### Added
+- Support for German Amortization System (Constant Principal).
+- Support for American Amortization System (Interest Only).
+- "Total Payment" column in the amortization table.
 - Modernized UI using Tailwind CSS via CDN.
 - Responsive design for mobile and desktop.
 - Strict type declarations in PHP logic.
