@@ -1,5 +1,11 @@
 # Changelog - Motor Tarificador
 
+## [v1.1.0] - 2025-12-05
+### Funcionalidad
+- **Soporte de Costos**: Se agregó la visualización del costo de la llamada (`CallCharge`) en los reportes detallados y el cálculo del costo total en los reportes resumidos.
+- **Exportación CSV Mejorada**: El archivo CSV exportado ahora incluye la columna de Costo.
+- **Nuevos Datos**: Soporte para el periodo **Noviembre 2025**.
+
 ## [v1.0.0] - 2025-12-04
 ### Modernización Completa
 Se ha reescrito la aplicación original (v0.3 de 2013) para cumplir con estándares modernos de seguridad y diseño.

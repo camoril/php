@@ -37,13 +37,14 @@ if ($type == 3) {
     header('Content-Disposition: attachment; filename=detalle_' . $ext . '.csv');
     
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['Fecha', 'Extension', 'Numero', 'Tiempo']);
+    fputcsv($output, ['Fecha', 'Extension', 'Numero', 'Tiempo', 'Costo']);
 
     $sql = "SELECT 
                 `CallStart` as 'Fecha',
                 `Caller` as 'Extension',
                 `CalledNumber` as 'Numero',
-                IFNULL(`ConnectedTime`, '00:00:00') as 'Tiempo'
+                IFNULL(`ConnectedTime`, '00:00:00') as 'Tiempo',
+                IFNULL(`CallCharge`, 0) as 'Costo'
             FROM `$mes` 
             WHERE `CalledNumber` LIKE :dial 
             AND `Caller` = :ext 
@@ -68,19 +69,21 @@ if ($type == 1 || $type == 2) {
                     `CallStart` as 'Fecha',
                     `Caller` as 'Extension',
                     `CalledNumber` as 'Numero',
-                    IFNULL(`ConnectedTime`, '00:00:00') as 'Tiempo'
+                    IFNULL(`ConnectedTime`, '00:00:00') as 'Tiempo',
+                    IFNULL(`CallCharge`, 0) as 'Costo'
                 FROM `$mes` 
                 WHERE `CalledNumber` LIKE :dial 
                 AND `Caller` = :ext 
                 AND `Caller` IS NOT NULL
                 ORDER BY `CallStart` ASC";
     } else {
-        // Total de Tiempo
+        // Total de Tiempo y Costo
         // Nota: WITH ROLLUP puede comportarse diferente en PDO dependiendo de la versión, 
         // pero la consulta SQL es estándar.
         $sql = "SELECT 
                     IFNULL(`Caller`, 'Total') as 'Extension',
-                    SEC_TO_TIME(SUM(TIME_TO_SEC(`ConnectedTime`))) as 'Total'
+                    SEC_TO_TIME(SUM(TIME_TO_SEC(`ConnectedTime`))) as 'Total',
+                    SUM(`CallCharge`) as 'CostoTotal'
                 FROM `$mes` 
                 WHERE `CalledNumber` LIKE :dial 
                 AND `Caller` = :ext 
@@ -126,9 +129,11 @@ if ($type == 1 || $type == 2) {
                                     <th class="px-4 py-2 text-left text-gray-600 font-bold">Extensión</th>
                                     <th class="px-4 py-2 text-left text-gray-600 font-bold">Número</th>
                                     <th class="px-4 py-2 text-left text-gray-600 font-bold">Tiempo</th>
+                                    <th class="px-4 py-2 text-left text-gray-600 font-bold">Costo</th>
                                 <?php else: ?>
                                     <th class="px-4 py-2 text-left text-gray-600 font-bold">Extensión</th>
                                     <th class="px-4 py-2 text-left text-gray-600 font-bold">Tiempo Total</th>
+                                    <th class="px-4 py-2 text-left text-gray-600 font-bold">Costo Total</th>
                                 <?php endif; ?>
                             </tr>
                         </thead>
@@ -140,9 +145,11 @@ if ($type == 1 || $type == 2) {
                                         <td class="px-4 py-2"><?= htmlspecialchars($row['Extension']) ?></td>
                                         <td class="px-4 py-2"><?= htmlspecialchars($row['Numero']) ?></td>
                                         <td class="px-4 py-2"><?= htmlspecialchars($row['Tiempo']) ?></td>
+                                        <td class="px-4 py-2">$<?= number_format((float)$row['Costo'], 2) ?></td>
                                     <?php else: ?>
                                         <td class="px-4 py-2 font-bold"><?= htmlspecialchars($row['Extension']) ?></td>
                                         <td class="px-4 py-2"><?= htmlspecialchars($row['Total']) ?></td>
+                                        <td class="px-4 py-2">$<?= number_format((float)$row['CostoTotal'], 2) ?></td>
                                     <?php endif; ?>
                                 </tr>
                             <?php endforeach; ?>

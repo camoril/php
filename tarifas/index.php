@@ -58,10 +58,7 @@
             <div>
                 <label for="mes" class="block text-sm font-medium text-gray-700 mb-1">Periodo</label>
                 <select name="mes" id="mes" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
-                    <option value="septiembre_WTC">Septiembre 2013</option>
-                    <option value="octubre_WTC">Octubre 2013</option>
-                    <option value="noviembre_WTC">Noviembre 2013</option>
-                    <option value="diciembre_WTC">Diciembre 2013</option>
+                    <option value="noviembre_2025">Noviembre 2025</option>
                 </select>
             </div>
 
