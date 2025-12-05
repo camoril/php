@@ -1,6 +1,0 @@
-[15-Mar-2016 15:27:24 Europe/Zagreb] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'tarifaswtc'@'localhost' (using password: YES) in /home/hypercubecom/public_html/tarifas/llamadas.php on line 21
-[15-Mar-2016 15:27:24 Europe/Zagreb] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, boolean given in /home/hypercubecom/public_html/tarifas/llamadas.php on line 100
-[17-May-2016 21:37:23 Europe/Zagreb] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'tarifaswtc'@'localhost' (using password: YES) in /home/hypercubecom/public_html/tarifas/llamadas.php on line 21
-[17-May-2016 21:37:23 Europe/Zagreb] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/hypercubecom/public_html/tarifas/llamadas.php on line 47
-[17-May-2016 21:37:23 Europe/Zagreb] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/hypercubecom/public_html/tarifas/llamadas.php on line 48
-[17-May-2016 21:37:23 Europe/Zagreb] PHP Warning:  mysqli_close() expects parameter 1 to be mysqli, boolean given in /home/hypercubecom/public_html/tarifas/llamadas.php on line 100
