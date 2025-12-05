@@ -1,6 +1,6 @@
 # PHP Projects Collection
 
-Este repositorio contiene una colección de aplicaciones y scripts en PHP desarrollados por **Camoril**, que van desde utilidades financieras hasta algoritmos de inteligencia artificial. Todos los proyectos han sido modernizados para utilizar estándares actuales de PHP 8 y Tailwind CSS.
+Este repositorio contiene una colección de aplicaciones y scripts en PHP desarrollados por **Ernesto Pineda B.**, que van desde utilidades financieras hasta algoritmos de inteligencia artificial. Todos los proyectos han sido modernizados para utilizar estándares actuales de PHP 8 y Tailwind CSS.
 
 ## 📂 Proyectos
 
