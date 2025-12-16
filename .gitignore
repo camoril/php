@@ -1,2 +1,3 @@
 tarifas/config.php
 *.bak
+error_log
