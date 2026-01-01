@@ -24,7 +24,7 @@ if ($isCli || $isLocal) {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'forms_db');
     define('DB_USER', 'forms_user');
-    define('DB_PASS', 'your_secure_password');
+    define('DB_PASS', 'forms_secure_password_2025');
     define('DB_PORT', 3306);
     define('APP_NAME', 'Sistema de Hojas de Servicio');
     define('APP_URL', 'http://localhost/forms');

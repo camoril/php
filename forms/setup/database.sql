@@ -6,10 +6,14 @@
 CREATE DATABASE IF NOT EXISTS forms_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE forms_db;
 
--- Crear usuario de base de datos
--- IMPORTANTE: Cambiar 'your_secure_password' por una contraseña segura
-CREATE USER IF NOT EXISTS 'forms_user'@'localhost' IDENTIFIED BY 'your_secure_password';
+-- Crear usuarios de base de datos
+-- IMPORTANTE: En producción cPanel, cambiar 'forms_secure_password_2025' por una contraseña segura
+-- Usuario para acceso local (instalación directa)
+CREATE USER IF NOT EXISTS 'forms_user'@'localhost' IDENTIFIED BY 'forms_secure_password_2025';
 GRANT ALL PRIVILEGES ON forms_db.* TO 'forms_user'@'localhost';
+-- Usuario para Docker/Podman (acceso desde contenedor)
+CREATE USER IF NOT EXISTS 'forms_user'@'%' IDENTIFIED BY 'forms_secure_password_2025';
+GRANT ALL PRIVILEGES ON forms_db.* TO 'forms_user'@'%';
 FLUSH PRIVILEGES;
 
 -- ========================================
@@ -66,10 +70,12 @@ INSERT IGNORE INTO usuarios (username, password, nombre, tipo) VALUES
 -- ========================================
 -- INSERTS: Intervenciones de Ejemplo
 -- ========================================
-INSERT IGNORE INTO intervenciones (fecha, cliente, descripcion, responsable_trabajador, responsable_cliente, horas_ocupadas, estado, usuario_id) VALUES
-('2025-12-15', 'Acme Corporation', 'Instalación de router Cisco serie 2900', 'Juan García Pérez', 'Carlos Mendez Flores', 2.5, 'pendiente', 2),
-('2025-12-10', 'Tech Solutions S.A.', 'Mantenimiento preventivo de switches Cisco', 'Juan García Pérez', 'María López García', 1.5, 'pendiente', 2),
-('2025-12-05', 'Acme Corporation', 'Diagnóstico de conectividad de red', 'Juan García Pérez', 'Carlos Mendez Flores', 3.0, 'firmado', 2);
+INSERT IGNORE INTO intervenciones (fecha, cliente, descripcion, responsable_trabajador, responsable_cliente, horas_ocupadas, estado, notas_adicionales, usuario_id) VALUES
+('2025-12-15', 'Acme Corporation', 'Instalación y configuración de router Cisco serie 2900 con OSPF. Configuración de VLANs 10, 20, 30 para departamentos de ventas, IT y administración. Implementación de listas de acceso (ACLs) para segmentación de red.', 'Juan García Pérez', 'Carlos Mendez Flores', 2.5, 'pendiente', 'Cliente solicita documentación de configuración. Pendiente programar capacitación para personal IT.', 2),
+('2025-12-10', 'Tech Solutions S.A.', 'Mantenimiento preventivo semestral de switches Cisco Catalyst serie 2960. Limpieza de puertos, actualización de firmware a versión 15.2(7), verificación de redundancia de enlaces y pruebas de failover. Revisión de logs de eventos.', 'Juan García Pérez', 'María López García', 1.5, 'pendiente', 'Switches en buen estado. Recomendado reemplazo de 2 módulos SFP en 6 meses.', 2),
+('2025-12-05', 'Acme Corporation', 'Diagnóstico de problema de conectividad intermitente en red LAN. Identificado cable categoría 6 defectuoso en patch panel. Reemplazo de cable, pruebas con certificador Fluke, verificación de throughput. Problema resuelto.', 'Juan García Pérez', 'Carlos Mendez Flores', 3.0, 'firmado', 'Cliente satisfecho con la rapidez del diagnóstico. Cable defectuoso presentaba 40% de pérdida de paquetes.', 2),
+('2025-11-28', 'Innovatech Labs', 'Instalación de punto de acceso WiFi 6 Cisco Catalyst 9115AX en área de laboratorio. Configuración de SSID corporativo con autenticación 802.1X (RADIUS), optimización de canales y potencia de transmisión. Survey de cobertura realizado.', 'Juan García Pérez', 'Roberto Sánchez Torres', 4.0, 'firmado', 'Cobertura óptima confirmada. Cliente aprobó extensión del proyecto a 3 pisos adicionales.', 2),
+('2025-11-20', 'GlobalBank S.A.', 'Auditoría de seguridad de red perimetral. Revisión de configuración de firewall FortiGate 200F, validación de reglas NAT, análisis de políticas de seguridad. Generación de reporte con 12 recomendaciones de hardening.', 'Juan García Pérez', 'Ana Patricia Ruiz', 5.5, 'firmado', 'Implementadas 8 de 12 recomendaciones durante la visita. Programada segunda fase para próximo mes.', 2);
 
 -- ========================================
 -- TABLA: Configuración de Branding

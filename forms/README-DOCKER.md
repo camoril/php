@@ -63,7 +63,7 @@ Contraseña: admin123
 
 | Contenedor | Imagen | Puerto | Descripción |
 |------------|--------|--------|-------------|
-| **forms-app** | php:8.4-apache | 8080 | Aplicación web |
+| **forms-app** | php:8.4.11-apache | 8080 | Aplicación web |
 | **forms-db** | mariadb:11.8 | 3306 | Base de datos |
 
 ### Volúmenes

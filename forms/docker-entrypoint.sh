@@ -74,8 +74,10 @@ TABLES_COUNT=$(php -r "
 
 echo "📊 Tablas encontradas: ${TABLES_COUNT}"
 
-if [ "$TABLES_COUNT" -lt "5" ]; then
-    echo "⚠️  Advertencia: Algunas tablas pueden no estar creadas correctamente"
+if [ "$TABLES_COUNT" -lt "3" ]; then
+    echo "⚠️  Advertencia: Faltan tablas. Se esperan 3 tablas (usuarios, intervenciones, configuracion_branding)"
+elif [ "$TABLES_COUNT" -eq "3" ]; then
+    echo "✅ Todas las tablas necesarias están creadas correctamente"
 fi
 
 echo "
