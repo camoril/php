@@ -292,5 +292,5 @@ La instalación nueva fue **completamente exitosa**. El sistema está:
 - ✅ Listo para pruebas y despliegue
 
 **Fecha**: 31 de Diciembre 2025 - 04:14 UTC
-**Versión**: 0.0.1-beta
+**Versión**: 0.0.1-beta2
 **Entorno**: Podman 5.4.2 + Podman Compose 1.3.0

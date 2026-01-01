@@ -318,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_intervention']
                                 <h5><i class="fas fa-file-pdf"></i> Información</h5>
                                 <p class="text-muted mt-3">Sistema para registrar hojas de servicio con firma digital.</p>
                                 <button class="btn btn-outline-primary" disabled>
-                                    v0.0.1 Beta
+                                    v0.0.1 Beta 2
                                 </button>
                             </div>
                         </div>
