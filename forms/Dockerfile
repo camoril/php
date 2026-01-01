@@ -1,5 +1,5 @@
 # Dockerfile para Sistema de Hojas de Servicio
-FROM php:8.4-apache
+FROM php:8.4.11-apache
 
 # Metadata
 LABEL maintainer="Ernesto Pineda <camoril@gmail.com>"
@@ -19,6 +19,12 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 RUN mkdir -p /var/www/html/pdfs && \
     chown -R www-data:www-data /var/www/html/pdfs && \
     chmod -R 755 /var/www/html/pdfs
+
+# Configurar directorio de sesiones de PHP
+RUN mkdir -p /var/lib/php/sessions && \
+    chown -R www-data:www-data /var/lib/php/sessions && \
+    chmod -R 755 /var/lib/php/sessions && \
+    echo "session.save_path = \"/var/lib/php/sessions\"" > /usr/local/etc/php/conf.d/sessions.ini
 
 # Copiar archivos de la aplicación
 COPY --chown=www-data:www-data . /var/www/html/
