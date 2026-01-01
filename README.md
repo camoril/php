@@ -4,6 +4,21 @@ Este repositorio contiene una colección de aplicaciones y scripts en PHP desarr
 
 ## 📂 Proyectos
 
+### 📋 [Forms - Sistema de Hojas de Servicio](/forms)
+Sistema web completo para gestión de intervenciones de servicio con firma digital.
+- **Objetivo**: Registrar y documentar intervenciones técnicas con validación del cliente mediante firma digital.
+- **Características**:
+  - Autenticación de usuarios con roles (Trabajador/Administrador).
+  - Gestión jerárquica de clientes, proyectos y contactos.
+  - Generación automática de PDFs personalizables.
+  - Firma digital de clientes (touch/mouse).
+  - Panel de administración completo.
+  - Branding configurable (logos, colores corporativos).
+  - Búsqueda y filtrado avanzado.
+  - Exportación de datos (CSV/JSON).
+- **Tecnología**: PHP 8.4+, MariaDB, Bootstrap 5, SignaturePad.js.
+- **Estado**: v0.0.1 Beta - En desarrollo activo.
+
 ### 🧬 [Genetic](/genetic)
 Una implementación didáctica y optimizada de un **Algoritmo Genético**.
 - **Objetivo**: Evolucionar una población de cadenas de texto aleatorias hasta que coincidan con una frase objetivo definida por el usuario.
@@ -32,9 +47,9 @@ Sistema de reporte y tarificación de llamadas telefónicas (Call Accounting).
 
 ## 🚀 Requisitos Generales
 
-- **PHP**: 8.0 o superior.
+- **PHP**: 8.0 o superior (8.4+ recomendado para Forms).
 - **Servidor Web**: Apache, Nginx, o PHP Built-in Server.
-- **Base de Datos**: MySQL/MariaDB (Requerido solo para el proyecto `tarifas`).
+- **Base de Datos**: MySQL/MariaDB (Requerido para `forms` y `tarifas`).
 
 ## 🛠️ Instalación y Uso
 
