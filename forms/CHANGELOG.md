@@ -37,6 +37,8 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 🐛 Campos del formulario no se guardaban correctamente (cliente_id, proyecto_id, contacto_id, hora)
 - 🐛 Datos demo incompletos sin información de relaciones
 - 🐛 Error de conexión al guardar firma del técnico en contenedor Docker (faltaba `credentials: 'same-origin'` en fetch)
+- 🐛 Columna `firma_tecnico_base64` no existía en SQL de instalación (causaba error al guardar firma del técnico)
+- 🐛 Respuesta JSON inválida en `sign_pdf.php` (faltaba `Content-Type: application/json` header)
 
 ### Seguridad
 - 🔐 Validación mejorada de acceso a arrays con isset() checks
