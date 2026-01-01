@@ -434,7 +434,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_intervention']
                     <div class="form-section">
                         <?php
                         // Obtener intervenciones del usuario actual
-                        $userInterventions = getAllInterventions(['usuario_id' => $user['id']], $pdo);
+                        $userInterventions = getAllInterventions($pdo, ['usuario_id' => $user['id']]);
                         
                         // Filtros adicionales si viene del formulario de consultas
                         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search_client'])) {
@@ -595,7 +595,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_intervention']
                         // Agregar usuario_id al filtro para que solo muestre los del usuario actual
                         $searchFilters['usuario_id'] = $user['id'];
                         
-                        $searchResults = getAllInterventions($searchFilters, $pdo);
+                        $searchResults = getAllInterventions($pdo, $searchFilters);
                         ?>
                         
                         <?php if ($hasSearch): ?>
@@ -708,7 +708,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_intervention']
                         <div class="tab-pane fade show active" id="admin-intervenciones" role="tabpanel">
                             <div class="form-section">
                                 <?php
-                                $allInterventions = getAllInterventions([], $pdo);
+                                $allInterventions = getAllInterventions($pdo, []);
                                 ?>
                                 <h5 class="mb-3">
                                     <i class="fas fa-list"></i> Todas las Intervenciones

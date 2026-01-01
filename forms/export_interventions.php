@@ -39,7 +39,7 @@ if ($_SESSION['tipo'] !== 'admin') {
 }
 
 // Obtener intervenciones
-$interventions = getAllInterventions($filters, $pdo);
+$interventions = getAllInterventions($pdo, $filters);
 
 // Generar CSV
 header('Content-Type: text/csv; charset=utf-8');

@@ -44,7 +44,7 @@ function getIntervention($id, $pdo) {
 /**
  * Obtener todas las intervenciones con filtros
  */
-function getAllInterventions($filters = [], $pdo) {
+function getAllInterventions($pdo, $filters = []) {
     $query = "SELECT i.*, u.nombre as usuario_nombre FROM intervenciones i 
               LEFT JOIN usuarios u ON i.usuario_id = u.id 
               WHERE 1=1";
