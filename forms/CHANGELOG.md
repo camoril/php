@@ -39,6 +39,7 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 🐛 Error de conexión al guardar firma del técnico en contenedor Docker (faltaba `credentials: 'same-origin'` en fetch)
 - 🐛 Columna `firma_tecnico_base64` no existía en SQL de instalación (causaba error al guardar firma del técnico)
 - 🐛 Respuesta JSON inválida en `sign_pdf.php` (faltaba `Content-Type: application/json` header)
+- 🐛 Faltaba header `Content-Type: application/json` en endpoints AJAX: `delete_intervention.php`, `manage_branding.php`, `manage_clientes.php`
 
 ### Seguridad
 - 🔐 Validación mejorada de acceso a arrays con isset() checks
