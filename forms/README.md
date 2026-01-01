@@ -62,79 +62,44 @@ Sistema web para gestionar y registrar hojas de servicio (intervenciones) con fi
 
 ## 🚀 Instalación Rápida
 
-### Opción 1: Docker/Podman (Más Rápido) 🐳
+### Con Docker/Podman (Recomendado)
 
 ```bash
-# 1. Clonar el repositorio
 git clone https://github.com/camoril/php.git
 cd php/forms
-
-# 2. Levantar contenedores (con Docker)
 docker-compose up -d
-
-# O con Podman
-podman-compose up -d
-
-# 3. Acceder en http://localhost:8080
+# Acceder: http://localhost:8080
 # Usuario: admin / Contraseña: admin123
 ```
 
-📚 **Documentación completa**: [README-DOCKER.md](README-DOCKER.md)
-
-### Opción 2: Script Automático
+### Instalación Tradicional
 
 ```bash
-# 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/forms.git
-cd forms
-
-# 2. Ejecutar instalador
+git clone https://github.com/camoril/php.git
+cd php/forms
 sudo bash install.sh
-
-# 3. Abrir en navegador
-http://localhost/forms
 ```
 
-### Opción 3: Manual
-
-Ver [INSTALL.md](INSTALL.md) para instrucciones detalladas.
-
-### Credenciales Iniciales
-
-```
-Usuario: admin
-Contraseña: admin123
-```
-
-> ⚠️ **IMPORTANTE**: Cambiar contraseña en producción
+📚 **Para más opciones de instalación, consulta [INSTALL.md](INSTALL.md)**
 
 ## 📖 Documentación
 
-- **[README.md](README.md)** - Información general (este archivo)
-- **[README-DOCKER.md](README-DOCKER.md)** - Guía de Docker/Podman
-- **[INSTALL.md](INSTALL.md)** - Guía completa de instalación
-- **[QUICK_START.md](QUICK_START.md)** - Inicio rápido y referencia
-- **[.env.example](.env.example)** - Configuración de variables de entorno
+- **[INSTALL.md](INSTALL.md)** - Guía completa de instalación (Docker, tradicional, cPanel)
+- **[DOCKER.md](DOCKER.md)** - Guía detallada de Docker/Podman (volúmenes, comandos, troubleshooting)
+- **[CHANGELOG.md](CHANGELOG.md)** - Historial de cambios y versiones
 
 ## 🔧 Configuración
 
-### Base de Datos
-
-Editar `config/database.php` con tus credenciales:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'forms_db');
-define('DB_USER', 'forms_user');
-define('DB_PASS', 'your_secure_password');
-```
-
 ### Branding (Logo y Colores)
 
-1. Iniciar sesión como administrador
+1. Iniciar sesión como **admin**
 2. Ir a **Administración → Branding**
 3. Subir logo y configurar colores corporativos
 4. Los cambios se reflejan inmediatamente en los PDFs
+
+### Base de Datos
+
+La base de datos se configura automáticamente con Docker. Para instalación manual, consulta [INSTALL.md](INSTALL.md).
 
 ## 👥 Roles de Usuario
 
@@ -177,9 +142,7 @@ define('DB_PASS', 'your_secure_password');
 - 1 GB espacio en disco
 - 512 MB RAM
 
-## 🐛 Solución de Problemas
 
-Ver la sección de **Troubleshooting** en [INSTALL.md](INSTALL.md) para problemas comunes.
 
 ## 🤝 Contribuir
 
@@ -193,132 +156,35 @@ Las contribuciones son bienvenidas. Por favor:
 
 ## 📝 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 👨‍💻 Autor
-
-Desarrollado con ❤️ por [Tu Nombre]
+Este proyecto está bajo la Licencia MIT.
 
 ## 🙏 Agradecimientos
 
-- Bootstrap por el framework CSS
-- SignaturePad.js por la firma digital
-- Font Awesome por los iconos
-- La comunidad de PHP por las mejores prácticas
+- [Bootstrap 5.3](https://getbootstrap.com/) - Framework CSS
+- [SignaturePad.js](https://github.com/szimek/signature_pad) - Firma digital
+- [Font Awesome](https://fontawesome.com/) - Iconos
+- Comunidad de PHP y MariaDB
+
+## 🔄 Flujo de Trabajo
+
+1. **Trabajador** inicia sesión en el sistema
+2. **Registra** nueva intervención con datos del servicio
+3. **Sistema** genera PDF automáticamente
+4. **Cliente** firma digitalmente desde cualquier dispositivo
+5. **PDF final** con firma se almacena y puede descargarse
+
+## 🐛 Solución de Problemas
+
+Para problemas comunes y soluciones, consulta:
+- **Docker/Podman**: [DOCKER.md - Sección Troubleshooting](DOCKER.md#troubleshooting)
+- **Instalación tradicional**: [INSTALL.md - Sección Troubleshooting](INSTALL.md#troubleshooting)
+
+## 📞 Soporte
+
+- **Repositorio**: https://github.com/camoril/php
+- **Issues**: https://github.com/camoril/php/issues
 
 ---
 
 **Versión**: 0.0.1 Beta 2  
-**Estado**: En desarrollo activo  
 **Última actualización**: 31 de Diciembre 2025
-
-### 5. Acceder a la Aplicación
-
-- **URL**: `http://localhost/forms`
-- **Usuario**: admin / admin123
-- **Usuario Trabajador**: juan / juan123
-
-## 🔐 Usuarios por Defecto
-
-| Usuario | Contraseña | Rol |
-|---------|-----------|-----|
-| admin | admin123 | Administrador |
-| juan | juan123 | Trabajador |
-
-> ⚠️ **IMPORTANTE**: Cambiar contraseñas en producción
-
-## 📦 Instalación en cPanel
-
-### 1. Preparación
-
-1. Subir carpeta `/forms` a `public_html`
-2. Crear BD en cPanel:
-   - Nombre: `forms_db`
-   - Usuario: `forms_user`
-3. Importar `setup/database.sql`
-
-### 2. Actualizar Configuración
-
-Editar `config/database.php`:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'forms_db');
-define('DB_USER', 'forms_user');
-define('DB_PASS', 'TU_CONTRASEÑA_CPANEL');
-define('APP_URL', 'https://tudominio.com.mx/forms');
-```
-
-### 3. Configurar .htaccess
-
-Crear `.htaccess` en `/forms/`:
-
-```apache
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /forms/
-    
-    # Permitir acceso a archivos y directorios reales
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Redirigir todo a index.php si no existe el archivo
-    RewriteRule ^(.*)$ index.php [L]
-</IfModule>
-```
-
-## 🔄 Flujo de Uso
-
-1. **Trabajador** inicia sesión
-2. **Registra** nueva intervención con datos
-3. **Sistema** genera PDF preformato
-4. **Cliente** firma el documento desde celular
-5. **Firma** se guarda en BD y se asocia a PDF
-6. **Reportes** se pueden consultar por cliente/fecha
-
-## 📝 Notas Importantes
-
-- Las firmas digitales NO son legalmente vinculantes (se requeriría e.firma para eso)
-- Se recomienda agregar checkbox de aceptación de términos
-- Los PDFs se almacenan en `/pdfs/`
-- Las firmas se guardan en base64 en la BD
-
-## 🐛 Troubleshooting
-
-### Error: "Access denied for user 'forms_user'"
-
-```bash
-# Verificar usuario existe
-sudo mariadb -u root -e "SELECT user FROM mysql.user LIKE 'forms_%';"
-
-# Recrear usuario
-sudo mariadb -u root < setup/database.sql
-```
-
-### Error: "PDFs directory not writable"
-
-```bash
-sudo chown -R www-data:www-data /var/www/html/forms/pdfs
-sudo chmod 777 /var/www/html/forms/pdfs
-```
-
-### Error: "Cannot connect to database"
-
-Verificar credenciales en `config/database.php` y que MariaDB esté corriendo:
-
-```bash
-sudo systemctl status mariadb
-```
-
-## 📞 Soporte
-
-Para preguntas o problemas, contactar al administrador del sistema.
-
-## 📄 Licencia
-
-Desarrollo interno - No redistribuible
-
----
-
-**Versión**: 1.0.0  
-**Última actualización**: 31 de Diciembre de 2025
