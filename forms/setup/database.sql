@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS intervenciones (
 -- Usuario: admin | Contraseña: admin123
 -- Usuario: juan | Contraseña: juan123
 INSERT IGNORE INTO usuarios (username, password, nombre, tipo) VALUES
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrador Sistema', 'admin'),
-('juan', '$2y$10$t5nUcY7Ycab4lxR3h0Z7ueLFVF5I5.L6d2F6Y7X8Z9.T5X5K5K5K5K', 'Juan García Pérez', 'trabajador');
+('admin', '$2y$12$Gz5i6QvkuCfAzrb.iq4PweukGZ3QP1wM0jsSwO89ziFgbj.UAEide', 'Administrador Sistema', 'admin'),
+('juan', '$2y$12$z4LnD31PQh7C6dck5VDaR.Zw2I8Fr/XYUuuh9OCpWbuZpkH8UZtYq', 'Juan García Pérez', 'trabajador');
 
 -- ========================================
 -- INSERTS: Intervenciones de Ejemplo
