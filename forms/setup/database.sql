@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS intervenciones (
     estado ENUM('pendiente', 'firmado') DEFAULT 'pendiente',
     pdf_path VARCHAR(255),
     firma_base64 LONGTEXT,
+    firma_tecnico_base64 LONGTEXT,
     notas_adicionales TEXT,
     usuario_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
