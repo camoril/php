@@ -1100,7 +1100,8 @@ $estado = $intervention['estado'] ?? 'pendiente';
 
                 fetch('sign_pdf.php', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    credentials: 'same-origin'
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -1164,7 +1165,8 @@ $estado = $intervention['estado'] ?? 'pendiente';
 
                 fetch('sign_pdf.php', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    credentials: 'same-origin'
                 })
                 .then(response => response.json())
                 .then(data => {
