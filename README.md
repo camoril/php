@@ -5,19 +5,34 @@ Este repositorio contiene una colección de aplicaciones y scripts en PHP desarr
 ## 📂 Proyectos
 
 ### 📋 [Forms - Sistema de Hojas de Servicio](/forms)
-Sistema web completo para gestión de intervenciones de servicio con firma digital.
-- **Objetivo**: Registrar y documentar intervenciones técnicas con validación del cliente mediante firma digital.
-- **Características**:
-  - Autenticación de usuarios con roles (Trabajador/Administrador).
-  - Gestión jerárquica de clientes, proyectos y contactos.
-  - Generación automática de PDFs personalizables.
-  - Firma digital de clientes (touch/mouse).
-  - Panel de administración completo.
-  - Branding configurable (logos, colores corporativos).
-  - Búsqueda y filtrado avanzado.
-  - Exportación de datos (CSV/JSON).
-- **Tecnología**: PHP 8.4+, MariaDB, Bootstrap 5, SignaturePad.js.
-- **Estado**: v0.0.1 Beta - En desarrollo activo.
+Sistema web profesional para gestión integral de hojas de servicio (intervenciones) con firma digital de clientes.
+- **Objetivo**: Registrar y documentar intervenciones técnicas con validación del cliente mediante firma digital, generando PDFs personalizables y automáticos.
+- **Características principales**:
+  - 🔐 Autenticación de usuarios con roles diferenciados (Trabajador/Administrador).
+  - 🏢 Gestión jerárquica de clientes, proyectos y contactos.
+  - 📝 Registro completo de intervenciones con múltiples campos configurables.
+  - 📄 Generación automática de PDFs con branding personalizado.
+  - ✍️ Firma digital de clientes (compatibilidad touch/mouse/tablet).
+  - 🎨 Panel de administración para branding (logos, colores corporativos, información de empresa).
+  - 👥 Gestión de usuarios con panel administrativo completo.
+  - 🔍 Búsqueda y filtrado avanzado por múltiples criterios.
+  - 📊 Exportación de datos (CSV, JSON).
+  - 🌐 Diseño responsive (móvil, tablet, desktop).
+  - ⏰ Registro automático de timestamps en cada intervención.
+- **Stack Tecnológico**: PHP 8.4+, MariaDB 11.8+, Bootstrap 5.3, SignaturePad.js, PDO (Prepared Statements).
+- **Licencia**: GPLv3 (Software Libre).
+- **Documentación**: 
+  - [README detallado](forms/README.md) con instrucciones completas.
+  - [INSTALL.md](forms/INSTALL.md) - Guías de instalación (Docker, tradicional, cPanel).
+  - [CHANGELOG.md](forms/CHANGELOG.md) - Historial de cambios.
+- **Instalación rápida**: 
+  ```bash
+  cd forms
+  docker-compose up -d
+  # Acceder: http://localhost:8080
+  # Usuario: admin / Contraseña: admin123
+  ```
+- **Estado**: v0.0.1 Beta 2 - En desarrollo activo con soporte Docker/Podman completo.
 
 ### 🧬 [Genetic](/genetic)
 Una implementación didáctica y optimizada de un **Algoritmo Genético**.
