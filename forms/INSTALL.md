@@ -38,8 +38,6 @@ Contraseña: admin123
 - ✅ Ideal para desarrollo y producción
 - ✅ Funciona igual en Linux, macOS y Windows
 
-📚 **Documentación completa**: Ver [README-DOCKER.md](README-DOCKER.md)
-
 ---
 
 ## 🔧 Opción 2: Instalación Tradicional
@@ -57,15 +55,17 @@ Si prefieres instalar directamente en tu servidor sin contenedores:
 ### Pasos
 
 ```bash
-# 1. Ir al directorio de la aplicación
-cd /var/www/html/forms
+# 1. Clonar repositorio
+git clone https://github.com/camoril/php.git
+cd php/forms
 
-# 2. Ejecutar el script de instalación
+# 2. Ejecutar el script de instalación (opcional)
 sudo bash install.sh
 
 # 3. Esperar a que se complete (2-3 minutos)
 
 # 4. Abrir en navegador
+# 4. Acceder en navegador (si instalaste localmente)
 # http://localhost/forms
 ```
 
@@ -116,12 +116,12 @@ SHOW TABLES;
 
 Deberías ver:
 ```
-+------------------------------+
-| Tables_in_forms_db |
-+------------------------------+
-| intervenciones               |
-| usuarios                     |
-+------------------------------+
+| intervenciones   |
+| usuarios         |
+| clientes         |
+| proyectos        |
+| contactos        |
+| configuracion_branding |
 ```
 
 #### 3. Configurar Permisos de Directorios
@@ -133,6 +133,7 @@ sudo chown -R www-data:www-data /var/www/html/forms
 # Asignar permisos
 sudo chmod -R 755 /var/www/html/forms
 sudo chmod 777 /var/www/html/forms/pdfs
+sudo chmod 777 /var/www/html/forms/sessions
 
 # Proteger archivos de configuración
 sudo chmod 640 /var/www/html/forms/config/*.php
@@ -142,7 +143,7 @@ sudo chmod 640 /var/www/html/forms/config/*.php
 
 ```bash
 # Habilitarmod_rewrite si no está activo
-sudo a2enmod rewrite
+sudo a2enmod rewrite deflate
 
 # Reiniciar Apache
 sudo systemctl restart apache2
@@ -154,6 +155,10 @@ Abrir en navegador:
 ```
 http://localhost/forms
 ```
+
+---
+
+## 🐳 Opciones Adicionales
 
 ---
 
@@ -316,4 +321,4 @@ Para problemas:
 ---
 
 **Última actualización:** 31 de Diciembre de 2025  
-**Versión:** 0.0.1 Beta
+**Versión:** 0.0.1 Beta 2
