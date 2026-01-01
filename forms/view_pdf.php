@@ -50,7 +50,8 @@ $cliente_nombre = $intervention['cliente'];
 $proyecto_nombre = '';
 $contacto_nombre = '';
 
-if ($intervention['cliente_id']) {
+// Verificar si existen las columnas antes de acceder (compatible con versiones anteriores)
+if (isset($intervention['cliente_id']) && $intervention['cliente_id']) {
     $stmt = $pdo->prepare("SELECT nombre FROM clientes WHERE id = ?");
     $stmt->execute([$intervention['cliente_id']]);
     $cliente_data = $stmt->fetch();
@@ -59,7 +60,7 @@ if ($intervention['cliente_id']) {
     }
 }
 
-if ($intervention['proyecto_id']) {
+if (isset($intervention['proyecto_id']) && $intervention['proyecto_id']) {
     $stmt = $pdo->prepare("SELECT nombre FROM proyectos WHERE id = ?");
     $stmt->execute([$intervention['proyecto_id']]);
     $proyecto_data = $stmt->fetch();
@@ -68,7 +69,7 @@ if ($intervention['proyecto_id']) {
     }
 }
 
-if ($intervention['contacto_id']) {
+if (isset($intervention['contacto_id']) && $intervention['contacto_id']) {
     $stmt = $pdo->prepare("SELECT nombre FROM contactos WHERE id = ?");
     $stmt->execute([$intervention['contacto_id']]);
     $contacto_data = $stmt->fetch();
