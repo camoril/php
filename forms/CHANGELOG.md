@@ -36,6 +36,7 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - 🐛 Falta de sincronización entre estructura de BD y código de la aplicación
 - 🐛 Campos del formulario no se guardaban correctamente (cliente_id, proyecto_id, contacto_id, hora)
 - 🐛 Datos demo incompletos sin información de relaciones
+- 🐛 Error de conexión al guardar firma del técnico en contenedor Docker (faltaba `credentials: 'same-origin'` en fetch)
 
 ### Seguridad
 - 🔐 Validación mejorada de acceso a arrays con isset() checks
