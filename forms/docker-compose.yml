@@ -27,7 +27,7 @@ services:
 
   # Base de Datos MariaDB
   db:
-    image: mariadb:11.8
+    image: docker.io/library/mariadb:11.8
     container_name: forms-db
     environment:
       - MYSQL_ROOT_PASSWORD=root_secure_password_2025
@@ -37,8 +37,9 @@ services:
     volumes:
       - db-data:/var/lib/mysql
       - ./setup/database.sql:/docker-entrypoint-initdb.d/01-schema.sql
-    ports:
-      - "3306:3306"
+    # Puerto comentado para evitar conflicto con MariaDB local
+    # ports:
+    #   - "3306:3306"
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 10s

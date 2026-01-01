@@ -56,10 +56,12 @@ EOF
 echo "✅ Configuración de base de datos generada"
 
 # Verificar que existan los directorios necesarios
-mkdir -p /var/www/html/pdfs
-mkdir -p /var/www/html/assets/logos
-chown -R www-data:www-data /var/www/html/pdfs
-chown -R www-data:www-data /var/www/html/assets/logos
+mkdir -p /var/www/html/pdfs 2>/dev/null || true
+mkdir -p /var/www/html/assets/logos 2>/dev/null || true
+
+# Intentar cambiar permisos (fallará en Podman rootless, pero no es crítico)
+chown -R www-data:www-data /var/www/html/pdfs 2>/dev/null || echo "⚠️  Advertencia: No se pudieron cambiar permisos (modo rootless)"
+chown -R www-data:www-data /var/www/html/assets/logos 2>/dev/null || echo "⚠️  Advertencia: No se pudieron cambiar permisos de logos (modo rootless)"
 
 echo "✅ Directorios configurados"
 
