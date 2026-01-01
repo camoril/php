@@ -62,7 +62,26 @@ Sistema web para gestionar y registrar hojas de servicio (intervenciones) con fi
 
 ## 🚀 Instalación Rápida
 
-### Opción 1: Script Automático (Recomendado)
+### Opción 1: Docker/Podman (Más Rápido) 🐳
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/camoril/php.git
+cd php/forms
+
+# 2. Levantar contenedores (con Docker)
+docker-compose up -d
+
+# O con Podman
+podman-compose up -d
+
+# 3. Acceder en http://localhost:8080
+# Usuario: admin / Contraseña: admin123
+```
+
+📚 **Documentación completa**: [README-DOCKER.md](README-DOCKER.md)
+
+### Opción 2: Script Automático
 
 ```bash
 # 1. Clonar el repositorio
@@ -76,7 +95,7 @@ sudo bash install.sh
 http://localhost/forms
 ```
 
-### Opción 2: Manual
+### Opción 3: Manual
 
 Ver [INSTALL.md](INSTALL.md) para instrucciones detalladas.
 
@@ -92,6 +111,7 @@ Contraseña: admin123
 ## 📖 Documentación
 
 - **[README.md](README.md)** - Información general (este archivo)
+- **[README-DOCKER.md](README-DOCKER.md)** - Guía de Docker/Podman
 - **[INSTALL.md](INSTALL.md)** - Guía completa de instalación
 - **[QUICK_START.md](QUICK_START.md)** - Inicio rápido y referencia
 - **[.env.example](.env.example)** - Configuración de variables de entorno

@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Aplicación PHP/Apache
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: forms-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pdfs:/var/www/html/pdfs
+      - ./assets/logos:/var/www/html/assets/logos
+    environment:
+      - DB_HOST=db
+      - DB_NAME=forms_db
+      - DB_USER=forms_user
+      - DB_PASS=forms_secure_password_2025
+      - DB_PORT=3306
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - forms-network
+    restart: unless-stopped
+
+  # Base de Datos MariaDB
+  db:
+    image: mariadb:11.8
+    container_name: forms-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_secure_password_2025
+      - MYSQL_DATABASE=forms_db
+      - MYSQL_USER=forms_user
+      - MYSQL_PASSWORD=forms_secure_password_2025
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./setup/database.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - forms-network
+    restart: unless-stopped
+
+networks:
+  forms-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

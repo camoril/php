@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# PDFs generados (se montan como volumen)
+pdfs/*.pdf
+
+# Documentación de desarrollo
+*.md
+!README-DOCKER.md
+
+# Variables de entorno locales
+.env.local
+
+# Logs
+*.log
+
+# Backups
+*.bak
+*.backup
+
+# Archivos temporales
+*.tmp
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+
+# Node modules (si se agregan en el futuro)
+node_modules/
