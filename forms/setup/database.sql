@@ -70,3 +70,27 @@ INSERT IGNORE INTO intervenciones (fecha, cliente, descripcion, responsable_trab
 ('2025-12-15', 'Acme Corporation', 'Instalación de router Cisco serie 2900', 'Juan García Pérez', 'Carlos Mendez Flores', 2.5, 'pendiente', 2),
 ('2025-12-10', 'Tech Solutions S.A.', 'Mantenimiento preventivo de switches Cisco', 'Juan García Pérez', 'María López García', 1.5, 'pendiente', 2),
 ('2025-12-05', 'Acme Corporation', 'Diagnóstico de conectividad de red', 'Juan García Pérez', 'Carlos Mendez Flores', 3.0, 'firmado', 2);
+
+-- ========================================
+-- TABLA: Configuración de Branding
+-- ========================================
+CREATE TABLE IF NOT EXISTS configuracion_branding (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    logo_path VARCHAR(255),
+    nombre_empresa VARCHAR(150),
+    email_empresa VARCHAR(100),
+    telefono_empresa VARCHAR(50),
+    direccion_empresa TEXT,
+    color_primario VARCHAR(7) DEFAULT '#0284C7',
+    color_secundario VARCHAR(7) DEFAULT '#0EA5E9',
+    mostrar_logo_pdf TINYINT(1) DEFAULT 0,
+    mostrar_firma_tecnico TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ========================================
+-- INSERTS: Configuración por defecto
+-- ========================================
+INSERT IGNORE INTO configuracion_branding (id, nombre_empresa, color_primario, color_secundario) VALUES
+(1, 'Sistema de Hojas de Servicio', '#0284C7', '#0EA5E9');

@@ -64,7 +64,8 @@ function getCurrentUser() {
  */
 function requireAuth() {
     if (!isAuthenticated()) {
-        header('Location: ' . APP_URL . '/?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+        $redirect = isset($_SERVER['REQUEST_URI']) ? urlencode($_SERVER['REQUEST_URI']) : '';
+        header('Location: ' . APP_URL . '/?redirect=' . $redirect);
         exit;
     }
 }
