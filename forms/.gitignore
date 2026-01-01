@@ -1,0 +1,53 @@
+# IDE y Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PHP y Server
+*.log
+.env
+.env.local
+*.php~
+
+# PDFs generados (son dinámicos)
+/pdfs/*.pdf
+
+# Base de datos
+*.sql.gz
+backup_*.sql
+
+# Composer
+/vendor/
+composer.lock
+
+# Node (si se agrega frontend build)
+/node_modules/
+/npm-debug.log
+
+# Temporales
+/tmp/
+*.tmp
+
+# Archivos de usuario
+config/database.php.local
+
+# Cache
+__pycache__/
+*.pyc
+.cache/
+
+# Backups
+*.bak
+*.backup
+*~
+
+# OS
+Thumbs.db
+.Thumbs.db
+
+# Credenciales (NUNCA commitear)
+.env.production
+config/database.cpanel.php

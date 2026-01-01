@@ -1,0 +1,49 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /forms/
+    
+    # Permitir acceso a archivos y directorios reales
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # No reescribir archivos específicos
+    RewriteCond %{REQUEST_FILENAME} !index\.php$
+    
+    # Si necesitas SPA, agrega aquí una regla de fallback a index.php
+    # RewriteRule ^(.*)$ index.php [L]
+</IfModule>
+
+# Configuración de seguridad
+<Files ~ "\.php$">
+    Order Deny,Allow
+    Allow from all
+</Files>
+
+# Proteger archivos sensibles
+<Files "database.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<FilesMatch "\.(sql|env|config)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Permitir acceso a PDFs
+<FilesMatch "\.pdf$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Comprensión de contenido
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Headers de seguridad
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
