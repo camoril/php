@@ -1,6 +1,52 @@
 # 📦 Instalación - Sistema de Hojas de Servicio
 
-## 🚀 Instalación Rápida (Con Script)
+## � Opción 1: Docker/Podman (Recomendado)
+
+**La forma más rápida y portable de instalar el sistema.**
+
+### Requisitos
+- Docker 20.10+ con Docker Compose 2.0+
+- O Podman 4.0+ con Podman Compose 1.0+
+
+### Instalación
+
+```bash
+# 1. Clonar repositorio
+git clone https://github.com/camoril/php.git
+cd php/forms
+
+# 2. Levantar contenedores (con Docker)
+docker-compose up -d
+
+# O con Podman
+podman-compose up -d
+
+# 3. Acceder en navegador
+http://localhost:8080
+```
+
+### Credenciales
+```
+Usuario: admin
+Contraseña: admin123
+```
+
+### Ventajas
+- ✅ Instalación en 2 comandos
+- ✅ No requiere configurar Apache/PHP/MariaDB manualmente
+- ✅ Ambiente aislado y portable
+- ✅ Ideal para desarrollo y producción
+- ✅ Funciona igual en Linux, macOS y Windows
+
+📚 **Documentación completa**: Ver [README-DOCKER.md](README-DOCKER.md)
+
+---
+
+## 🔧 Opción 2: Instalación Tradicional
+
+Si prefieres instalar directamente en tu servidor sin contenedores:
+
+### Instalación Rápida (Con Script)
 
 ### Requisitos Previos
 - PHP 8.4+
@@ -34,11 +80,11 @@ Contraseña: admin123
 
 ---
 
-## 🔧 Instalación Manual
+### Instalación Manual
 
 Si el script automatizado no funciona, seguir estos pasos:
 
-### 1. Crear Base de Datos
+#### 1. Crear Base de Datos
 
 **Opción A: Desde línea de comandos**
 
@@ -56,7 +102,7 @@ mysql -u root -p
 # Pegar el contenido de setup/database.sql y ejecutar
 ```
 
-### 2. Verificar Creación de BD
+#### 2. Verificar Creación de BD
 
 ```bash
 # Conectar como nuevo usuario
@@ -78,7 +124,7 @@ Deberías ver:
 +------------------------------+
 ```
 
-### 3. Configurar Permisos de Directorios
+#### 3. Configurar Permisos de Directorios
 
 ```bash
 # Cambiar propietario a Apache
@@ -92,7 +138,7 @@ sudo chmod 777 /var/www/html/forms/pdfs
 sudo chmod 640 /var/www/html/forms/config/*.php
 ```
 
-### 4. Verificar Permisos de Apache
+#### 4. Verificar Permisos de Apache
 
 ```bash
 # Habilitarmod_rewrite si no está activo
@@ -102,7 +148,7 @@ sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
-### 5. Probar Acceso
+#### 5. Probar Acceso
 
 Abrir en navegador:
 ```
@@ -111,7 +157,7 @@ http://localhost/forms
 
 ---
 
-## ⚙️ Configuración para cPanel
+## 🌐 Opción 3: Configuración para cPanel
 
 ### Paso 1: Subir Archivos
 
@@ -160,7 +206,7 @@ define('APP_URL', 'https://tudominio.com.mx/forms'); // Cambiar
 
 ---
 
-## ✅ Verificación Post-Instalación
+## ✅ Verificación Post-Instalación (Instalación Tradicional)
 
 ### Checklist
 
@@ -256,5 +302,18 @@ Para problemas:
 
 ---
 
-**Última actualización:** 31 de Diciembre de 2025
-**Versión:** 1.0.0
+## 📊 Comparación de Métodos de Instalación
+
+| Característica | Docker/Podman | Script Auto | Manual | cPanel |
+|----------------|---------------|-------------|--------|--------|
+| **Tiempo instalación** | 2 min | 5 min | 15 min | 20 min |
+| **Dificultad** | Muy Fácil | Fácil | Media | Media |
+| **Portabilidad** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ |
+| **Aislamiento** | ✅ Completo | ❌ | ❌ | ❌ |
+| **Requisitos** | Docker/Podman | LAMP Stack | LAMP Stack | cPanel |
+| **Recomendado para** | Desarrollo + Producción | Servidores Linux | Configuración custom | Hosting compartido |
+
+---
+
+**Última actualización:** 31 de Diciembre de 2025  
+**Versión:** 0.0.1 Beta
