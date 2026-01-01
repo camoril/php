@@ -1,0 +1,350 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 Ernesto Camorena
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+TÉRMINOS Y CONDICIONES COMPLETOS (English follows Spanish version)
+
+LICENCIA PÚBLICA GENERAL GNU (GPLv3)
+
+Versión 3, 29 de junio de 2007
+
+Copyright (C) 2025 Ernesto Camorena
+Todos tienen permiso para copiar y distribuir copias literales
+de este documento de licencia, pero no se permite cambiarlo.
+
+PREÁMBULO
+
+La Licencia Pública General GNU es una licencia libre, copyleft,
+para software y otros tipos de obras.
+
+Las licencias para la mayoría del software están diseñadas para
+quitarle la libertad de compartir y cambiar el software. Por el
+contrario, la Licencia Pública General GNU pretende garantizar
+su libertad para compartir y cambiar todas las versiones de un
+programa --para asegurarse de que sigue siendo software libre
+para todos sus usuarios.
+
+Cuando hablamos de software libre, nos referimos a libertad, no
+a precio. Nuestras Licencias Públicas Generales están diseñadas
+para asegurarse de que usted tenga la libertad de distribuir
+copias del software libre (y cobrar por ello si lo desea), que
+reciba el código fuente o pueda obtenerlo si lo desea, que pueda
+cambiar el software o usar partes de él en nuevos programas
+libres, y que sepa que puede hacer estas cosas.
+
+Para proteger sus derechos, necesitamos hacer restricciones que
+impidan a otros negárselos. Estas restricciones se traducen en
+responsabilidades para usted si distribuye copias del software,
+o lo modifica.
+
+Por ejemplo, si distribuye copias de tal programa, ya sea
+gratis o por una tarifa, debe dar a los receptores todos los
+derechos que usted tiene. Debe asegurarse de que también
+reciban o puedan obtener el código fuente. Y debe mostrarles
+estos términos para que conozcan sus derechos.
+
+Los desarrolladores que usan nuestra GPL protegen sus derechos
+con dos pasos: (1) afirmar los derechos de autor del software,
+y (2) ofrecerle esta Licencia para que lo use, modifique y
+distribuya libremente.
+
+Para la protección de los desarrolladores y autores, la GPL
+establece claramente que no hay garantía para este software
+libre. Tanto si el software es modificado por otra persona
+como si se utiliza sin modificar, el usuario asume todo el
+riesgo relacionado con su calidad y rendimiento.
+
+Finalmente, cada distribuidor de software libre tiene el
+problema de que los patents podrían amenazar su programa.
+Los desarrolladores de software libre usan licencias de software
+libre para protegerse de los litigios. Por eso nosotros
+recalcamos que cualquier licencia libre debe garantizar que los
+usuarios pueden obtener patentes de cualquier parte, para que el
+futuro del programa no sea comprometido.
+
+Términos y Condiciones
+
+1. Definiciones.
+
+"Esta Licencia" se refiere a la versión 3 de la Licencia Pública
+General GNU.
+
+"Derechos de autor" también significa leyes similares que se
+aplican a otros tipos de obras, tales como las máscaras de
+semiconductores.
+
+"El Programa" se refiere a cualquier obra protegida por derechos
+de autor bajo esta Licencia. Cada licenciatario es
+direccionado como "usted". "Licenciarios" y "destinatarios"
+puede ser individuos u organizaciones.
+
+"Modificar" una obra significa copiar de, o adaptar la totalidad
+o la parte de la obra en un forma que requiere permiso de
+derechos de autor, distinto a la elaboración de una copia exacta.
+La obra resultante se llama una "versión modificada" de la obra
+anterior, o una obra "basada en" la obra anterior.
+
+Una "obra cubierta" significa bien el Programa sin modificar, o
+una obra basada en el Programa.
+
+"Propagar" una obra significa hacer algo con ella que, sin
+permiso, te haría directamente o secundariamente responsable de
+la infracción bajo la ley de derechos de autor aplicable,
+excepto ejecutarla en una computadora o modificar una copia
+privada. La propagación incluye copiar, distribución (con o sin
+modificación), hacerla disponible al público, y en algunos países
+otras actividades también.
+
+"Transportar" una obra significa cualquier tipo de propagación
+que permite a otra parte hacer o recibir copias. La mera
+interacción con un usuario a través de una red de computadoras,
+sin transferencia de una copia, no se considera transporte.
+
+Una interfaz de usuario interactiva muestra "Avisos Legales
+Apropiados" en la medida que incluya una característica
+conveniente y bien-visible que (1) muestre un aviso de derechos
+de autor apropiado, y (2) le diga al usuario que no hay garantía
+para la obra (excepto en la medida en que las garantías son
+proporcionadas), que los licenciarios pueden transportar la obra
+bajo esta Licencia, y cómo ver una copia de esta Licencia. Si la
+interfaz muestra una lista de comandos u opciones, tal como un
+menú, un elemento destacado en la lista se ajusta a este
+criterio.
+
+2. Códigos Fuente.
+
+El "código fuente" de una obra significa la forma preferida de
+la obra para hacer modificaciones a ella. "Código de objeto"
+significa cualquier forma no-fuente de una obra.
+
+Una "Interfaz Estándar" significa una interfaz que bien es un
+estándar oficial definido por un cuerpo de estandarización
+reconocido, o, en el caso de interfaces específicas para un
+lenguaje particular, una que es ampliamente usada en esa
+lenguaje.
+
+Las "Bibliotecas del Sistema" de una obra ejecutable incluyen
+cualquier cosa, aparte del trabajo en su conjunto, que
+normalmente se distribuye (en código fuente o binario) con los
+componentes principales (núcleo compilador, núcleo, etc.) del
+sistema operativo en el cual se ejecuta el trabajo ejecutable,
+o un compilador usado para producir el trabajo, o un corredor de
+máquina virtual de objetos usada para ejecutar él.
+
+La "Fuente Correspondiente" para una obra en la forma de código
+de objeto significa toda la fuente de código necesaria para
+generar, instalar, y (para una obra ejecutable) ejecutar el código
+de objeto y modificar la obra, incluyendo guiones para controlar
+esas actividades. Sin embargo, lo anterior no incluye las
+Bibliotecas del Sistema de la obra, o herramientas para uso
+general o componentes muy disponibles generalmente (tales como
+wget) con los cuales está asociado, a menos que ese componente
+acompañe el trabajo ejecutable.
+
+La Fuente Correspondiente incluye cualquier datos de encryption o
+credenciales necesarias para permitir la modificación del trabajo,
+pero no incluye la clave privada de criptografía del sistema en el
+cual el trabajo se envía.
+
+3. Restricciones Técnicas.
+
+No puede evadir ninguna medida tecnológica eficaz bajo cualquier
+ley que realice obligaciones bajo el artículo 11 del tratado de
+la OMPI adoptado el 20 de diciembre de 1996, o leyes similares
+prohibiendo o restringiendo la evasión de tales medidas.
+
+Si distribuye una obra cubierta, y rechaza toda protección legal
+contra evasión de medidas tecnológicas para ello, usted acepta el
+rechazo de toda protección legal por evasión de tales medidas bajo
+esta Licencia, en lo que se refiere al trabajo cubierto.
+
+4. Transportación de Copias Literales.
+
+Puede transportar copias literales del código fuente del Programa
+tal como lo recibe, en cualquier medio, siempre que:
+
+a) Mostrar claramente en cada copia un aviso de derechos de
+autor apropiado;
+
+b) Mantener intactos todos los avisos que declaran que esta Licencia
+y cualquier término no-permisivo se aplica al código;
+
+c) Mantener intactos todos los avisos de ausencia de garantía;
+
+d) Dar a todos los receptores del Programa una copia de esta
+Licencia junto con el Programa.
+
+Puede cobrar cualquier cantidad o ninguna por cada copia que
+envíe, y puede ofrecer protección de garantía por una cuota.
+
+5. Transportación de Versiones Fuente Modificadas.
+
+Puede transportar una obra basada en el Programa, o las
+modificaciones para producirlo desde el Programa, en la forma de
+código fuente bajo los términos de la Sección 4, siempre que
+usted también se ajuste a todos estos términos:
+
+a) La obra debe incluir avisos claramente visible declarando que
+usted la modificó, y dándole una fecha apropiada;
+
+b) La obra debe incluir avisos claramente visible declarando que
+está bajo esta Licencia y cualquier condición añadida bajo la
+Sección 7;
+
+c) Usted debe licenciar toda la obra, como un entero, bajo esta
+Licencia a cualquiera que tenga una copia;
+
+d) Si la obra normalmente muestra avisos interactivos cuando se
+ejecuta, el trabajo debe mostrar o permitir que se acceda a estos
+avisos, incluyendo: un aviso de derechos de autor (i) una
+referencia a esta Licencia (ii) un aviso de ausencia de garantía
+(iii) que los usuarios pueden transportar la obra bajo esta
+Licencia (iv) y le informar cómo ver una copia de esta Licencia.
+
+Si la interfaz presenta una lista de opciones de usuarios, tales
+como menú, un artículo destacado en la lista se ajusta a este
+criterio.
+
+6. Transportación de Código No-Fuente.
+
+Puede transportar un trabajo cubierto en código de objeto o en
+forma binaria bajo los términos de la Sección 4 y 5, siempre que
+proporcionemos también la Fuente Correspondiente legible de
+máquina bajo los términos de esta Licencia, de una de estas
+formas:
+
+a) Transportar el código de objeto o la forma binaria con, o en,
+un medio físico (incluyendo DVD), acompañado por la Fuente
+Correspondiente codificada en un formato de datos estándar
+en el medio;
+
+b) Transportar el código de objeto o la forma binaria con una
+oferta escrita, válida por al menos tres años, y válida mientras
+usted ofrece recambios para ese modelo de producto, para dar a
+cualquiera que posea una copia de usted:
+
+1. Una copia de la Fuente Correspondiente para todo el software
+en el Programa cubierto bajo esta Licencia, en un medio físico
+que normalmente se usa para intercambio de software, por un
+precio no más que el costo razonable de física transportación;
+
+2. Acceso para copiar la Fuente Correspondiente desde una red de
+servidores sin costo.
+
+c) Transportar o reutilizar copias individuales con la oferta
+de acceso a la Fuente Correspondiente. Este método de alternativa
+es permitido solamente ocasionalmente y non-comercialmente, y
+solamente si usted recibe la oferta de código de objeto con tal
+oferta, en cumplimiento con la subsección 6b.
+
+d) Transportar el código de objeto por restricción del acceso
+del usuario al usuario con una oferta de acceso a la Fuente
+Correspondiente. Usted debe, sin embargo, retener el acceso a la
+Fuente Correspondiente de los usuarios del servidor de la red que
+ya han recibido copias del código de objeto desde usted o a través
+de terceros, sin pago de honorarios.
+
+No es una exigencia para los usuarios mantener copias que ya
+poseen, para que lo haga usted.
+
+La "Fuente Correspondiente" para una obra en la forma de código
+de objeto incluye todos los módulos y partes de eso, más
+cualquier datos de definición asociada y "script" instalación
+necesaria para compilar, instalar y ejecutar el código de objeto,
+pero NO incluye la Biblioteca del Sistema del trabajo, u
+herramientas de propósito general u componentes ampliamente
+disponibles (tales como wget) con que el objeto está asociado.
+
+Si usted transporta el código de objeto ofreciendo acceso desde
+un lugar específico (cambiar copias físicas), entonces usted debe
+ofrecer acceso a la Fuente Correspondiente desde el mismo lugar,
+sin un costo adicional.
+
+Si la distribución de código de objeto o binario está hecha
+ofreciendo acceso desde un lugar específico, puede ser
+interpretada como "sin coste" ofreciendo acceso equivalente a la
+Fuente Correspondiente desde el mismo lugar sin un costo
+adicional. Pero no es requerido mantener una copia a una parte
+tercera que no recibió ya copia.
+
+Si usted está distribuyendo el trabajo en código de objeto o forma
+binaria, está obligado a ofrecer la Fuente Correspondiente en
+términos de esta sección, bajo la sección anterior (Sección 6).
+
+7. Restricciones Adicionales.
+
+Cuando usted transporta una obra cubierta, puede dentro de su
+elección asumir la obligación de proteger la garantía, soporte,
+indemnización, u otras responsabilidades de la responsabilidad
+bajo esta Licencia. Aceptar tales responsabilidades no le
+permiten a usted cambiar los términos de esta Licencia. Sin
+embargo, si usted acepta responsabilidades sobre las
+responsabilidades de personas que han recibido copias o derechos
+basado en su acuerdo de obligaciones, si y solamente si usted
+acepta la responsabilidad legal por estas obligaciones.
+
+Si usted transporta una obra cubierta, asumiendo la obligación de
+protección, se sugiere que usted distribuya la restricción de
+tales cubierta obligaciones bajo esta Licencia con tales términos:
+
+a) Asumir el riesgo de garantía y pérdida de valor de la obra;
+
+b) Asumir el costo de servicio o reparación de la obra;
+
+c) Si la obra resulta defectuosa, asumir el costo de todas las
+reparaciones necesarias para llevar la obra a un estado
+útil.
+
+Esta renuncia de garantía constituye una parte esencial de cualquier
+distribución de la obra bajo esta Licencia. Sin la renuncia, no hay
+transportación de la obra bajo esta Licencia es permitida.
+
+8. Limitación de Responsabilidad.
+
+EN NINGUNA CIRCUNSTANCIA, A MENOS QUE LO REQUIERA LA LEY APLICABLE
+(COMO UN ACTO NEGLIGENTE) O ACORDADO POR ESCRITO, SERÁ NINGÚN
+TENEDOR DE DERECHOS DE AUTOR, NI NINGUNA OTRA PARTE QUE MODIFIQUE
+Y/O TRANSPORTE EL PROGRAMA COMO SE PERMITE ANTERIORMENTE,
+RESPONSABLE ANTE USTED POR DAÑOS, INCLUYENDO CUALQUIER DAÑO GENERAL,
+ESPECIAL, INCIDENTAL O CONSECUENTE, DERIVADO DEL USO O INCAPACIDAD
+DE USAR EL PROGRAMA (INCLUYENDO PERO NO LIMITADO A LA PÉRDIDA DE
+DATOS, DATOS CORRUPTOS, PÉRDIDAS SUFRIDAS POR USTED O TERCEROS, O
+UN FALLO DEL PROGRAMA PARA OPERAR CON CUALQUIER OTRO PROGRAMA),
+INCLUSO SI EL TITULAR O OTRA PARTE HA SIDO ADVERTIDA DE LA
+POSIBILIDAD DE TALES DAÑOS.
+
+9. Interpretación de las Secciones 7 y 8.
+
+Si la renuncia de garantía y limitación de responsabilidad
+proporcionada anteriormente no puede tener efecto local de
+acuerdo con sus términos, los tribunales de revisión aplicarán la
+ley local que se aproxime más a una renuncia absoluta de toda
+responsabilidad civil en relación con el Programa, a menos que una
+garantía o asunción de responsabilidad acompañe una copia del
+Programa a cambio de una tarifa.
+
+---
+
+ENGLISH VERSION (Full GPLv3 Text):
+
+For the complete English version of GPLv3, please visit:
+https://www.gnu.org/licenses/gpl-3.0.en.html
+
+The full text is also available at:
+https://www.gnu.org/licenses/gpl-3.0.txt

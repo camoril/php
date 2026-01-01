@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-0.0.1--beta2-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?logo=php)
 ![MariaDB](https://img.shields.io/badge/MariaDB-11.8%2B-003545?logo=mariadb)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-GPLv3-blue)
 
 Sistema web para gestionar y registrar hojas de servicio (intervenciones) con firma digital de clientes. Diseñado para empresas de servicios técnicos que necesitan documentar sus intervenciones con validación del cliente.
 
@@ -154,9 +154,12 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
+**Nota**: Todas las contribuciones se distribuyen bajo la licencia GPLv3.
+
 ## 📝 Licencia
 
-Este proyecto está bajo la Licencia MIT.
+Este proyecto está bajo la Licencia Pública General GNU v3 (GPLv3).
+Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ## 🙏 Agradecimientos
 
