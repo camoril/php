@@ -1,6 +1,6 @@
 # 🐳 Sistema de Hojas de Servicio - Docker/Podman
 
-Versión containerizada del Sistema de Hojas de Servicio para instalación rápida y portable.
+Versión containerizada (0.0.1-beta2) del Sistema de Hojas de Servicio para instalación rápida y portable.
 
 ## 📋 Requisitos
 

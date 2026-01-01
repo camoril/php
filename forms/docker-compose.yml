@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: odt/forms_app:0.0.1-beta2
     container_name: forms-app
     ports:
       - "8080:80"

@@ -9,7 +9,7 @@ Se realizó una **instalación completamente nueva** eliminando todos los rastro
 **Paso 1: Eliminación Completa**
 ```bash
 podman-compose down -v                    # Detener y eliminar contenedores, redes, volúmenes
-podman image rm localhost/forms_app:latest # Eliminar imagen local
+podman image rm odt/forms_app:0.0.1-beta2 # Eliminar imagen local
 ```
 
 **Resultado**: 
@@ -23,7 +23,7 @@ podman-compose up -d  # Reconstruir y levantar
 ```
 
 **Resultado**:
-- ✅ Imagen `localhost/forms_app:latest` reconstruida desde Dockerfile
+- ✅ Imagen `odt/forms_app:0.0.1-beta2` reconstruida desde Dockerfile
 - ✅ Contenedor `forms-app` iniciado
 - ✅ Contenedor `forms-db` inicializado
 - ✅ docker-entrypoint.sh ejecutado
@@ -85,7 +85,7 @@ Contraseña: `admin123` y `juan123` (respectivamente)
 
 ### forms-app
 ```
-Imagen: localhost/forms_app:latest
+Imagen: odt/forms_app:0.0.1-beta2
 PHP: 8.4.11-apache
 Estado: UP (30 segundos)
 Puerto: 8080:80

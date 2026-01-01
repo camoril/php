@@ -4,7 +4,7 @@ FROM php:8.4.11-apache
 # Metadata
 LABEL maintainer="Ernesto Pineda <camoril@gmail.com>"
 LABEL description="Sistema de Hojas de Servicio - Gestión de intervenciones con firma digital"
-LABEL version="0.0.1-beta"
+LABEL version="0.0.1-beta2"
 
 # Instalar extensiones PHP necesarias
 RUN docker-php-ext-install pdo pdo_mysql mysqli

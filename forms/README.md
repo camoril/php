@@ -1,6 +1,6 @@
 # Sistema de Hojas de Servicio
 
-![Version](https://img.shields.io/badge/version-0.0.1--beta-blue)
+![Version](https://img.shields.io/badge/version-0.0.1--beta2-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?logo=php)
 ![MariaDB](https://img.shields.io/badge/MariaDB-11.8%2B-003545?logo=mariadb)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -208,7 +208,7 @@ Desarrollado con ❤️ por [Tu Nombre]
 
 ---
 
-**Versión**: 0.0.1 Beta  
+**Versión**: 0.0.1 Beta 2  
 **Estado**: En desarrollo activo  
 **Última actualización**: 31 de Diciembre 2025
 
