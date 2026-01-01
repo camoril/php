@@ -5,6 +5,9 @@
  * POST: id, firma_base64
  */
 
+// Forzar respuesta JSON
+header('Content-Type: application/json');
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
